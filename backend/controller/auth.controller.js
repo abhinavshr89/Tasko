@@ -73,3 +73,13 @@ export const logoutController = (req, res) => {
     });
 };
 
+export const meController = (req, res) => {
+    if (!req.user) {
+        return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+    res.status(200).json({
+        success: true,
+        user: req.user
+    });
+};
+

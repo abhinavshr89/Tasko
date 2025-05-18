@@ -7,8 +7,11 @@ import connectDb from "./db/connectDb.js";
 import cookieParser from "cookie-parser";
 
 const app = express();
+app.use(cors({
+  origin: "http://localhost:5173", // change to your frontend's URL/port
+  credentials: true
+}));
 dotenv.config();
-app.use(cors());
 app.use(express.json());
 app.use(cookieParser());
 connectDb();
