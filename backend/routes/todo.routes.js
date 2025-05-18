@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.post("/create", isAuthenticated, createTodo);
 router.get("/get", isAuthenticated, getTodos);
-router.put("/update/:id", isAuthenticated ,updateTodo);
+router.put("/update", isAuthenticated ,updateTodo); 
 router.delete("/delete/:id", isAuthenticated,  deleteTodo);
 
 

@@ -33,35 +33,37 @@ export const createTodo = async (req, res) => {
   }
 
 }
-
 export const getTodos = async (req, res) => {
-    try {
-        const todos = await Todo.find();
-        return res.status(200).json({
-        success: true,
-        todos,
-        });
-    } catch (err) {
-        return res.status(500).json({
-        success: false,
-        message: err.message,
-        });
-    }
-}
+  try {
+    const todos = await Todo.find({ userId: req.user._id }); 
+    return res.status(200).json({
+      success: true,
+      todos,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: err.message,
+    });
+  }
+};
 
 export const updateTodo = async (req, res) => {
     try {
-        const { id } = req.params;
-        const { title, description } = req.body;
+        const { id, status } = req.body;
 
-        if (!title || !description) {
+        if (!id || !status) {
             return res.status(400).json({
                 success: false,
-                message: "All fields are required",
+                message: "Todo id and status are required",
             });
         }
 
-        const todo = await Todo.findByIdAndUpdate(id, { title, description }, { new: true });
+        const todo = await Todo.findByIdAndUpdate(
+            id,
+            { status },
+            { new: true }
+        );
 
         if (!todo) {
             return res.status(404).json({

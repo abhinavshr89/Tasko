@@ -3,7 +3,7 @@ import React from "react";
 const LeftAuthPage = () => {
   return (
     <div
-      className="w-[50%] bg-black flex flex-col items-center justify-center relative overflow-hidden  max-sm:hidden"
+      className="w-[50%] bg-black flex flex-col items-center justify-center relative overflow-hidden  max-sm:hidden grid-lines"
     >
       {/* Overlay for contrast */}
       <div className="absolute inset-0 bg-gradient-to-br opacity-80 pointer-events-none" />
